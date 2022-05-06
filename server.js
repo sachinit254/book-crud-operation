@@ -24,6 +24,9 @@ const server = http.createServer(async (req, res) => {
   } else if (req.url.match(/\/books\/([0-9]+)/) && req.method === "DELETE") {
     const id = req.url.split("/")[2];
     deleteBook(req, res, id);
+  } else {
+    res.writeHead(404, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ message: "Route not found" }));
   }
 });
 
